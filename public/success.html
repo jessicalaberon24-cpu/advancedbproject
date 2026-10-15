@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Returning to BudgetPhone.ph — Laberon Shop 📱
+    </title>
+
+    <style>
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffc1dc,
+                    #bdefff
+                );
+        }
+
+        .success-box {
+            width: 90%;
+            max-width: 450px;
+            padding: 35px;
+            background: white;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow:
+                0 10px 30px
+                rgba(0, 0, 0, 0.18);
+        }
+
+        .success-box h1 {
+            color: #e91e63;
+            margin-bottom: 15px;
+        }
+
+        .success-box p {
+            font-size: 17px;
+            margin-bottom: 25px;
+        }
+
+        .success-box button {
+            padding: 13px 25px;
+            border: none;
+            border-radius: 12px;
+            background: #e91e63;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="success-box">
+
+        <h1>
+            Returning to BudgetPhone.ph 📱
+        </h1>
+
+        <p>
+            We are returning you to the shop so the server can verify your Maya Sandbox payment.
+        </p>
+
+        <button
+            onclick="continueShopping()"
+        >
+            Continue Shopping
+        </button>
+
+    </div>
+
+
+    <script>
+
+        function continueShopping() {
+
+            window.location.href =
+                "/?payment=success";
+
+        }
+
+    </script>
+
+</body>
+
+</html>
