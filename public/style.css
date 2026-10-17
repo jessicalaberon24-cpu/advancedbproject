@@ -524,6 +524,7 @@ body {
 
 }
 
+
 /* BUDGETPHONE.PH responsive navigation and compact cart */
 .nav-links button.active, .nav-links button:focus-visible {
     background: #ff3da8;
@@ -575,4 +576,38 @@ body {
 .order-card p,
 .receipt-paper p {
     color: #333333;
+}
+* { box-sizing: border-box; }
+img { max-width: 100%; }
+
+
+@media (max-width: 480px) {
+  .cart-item {
+    display: grid;
+    grid-template-columns: 24px 70px 1fr;
+    column-gap: 10px;
+    align-items: start;
+    padding: 12px;
+  }
+  .cart-item input[type="checkbox"] { grid-column: 1; margin-top: 4px; }
+  .cart-item img { grid-column: 2; width: 70px; height: 70px; object-fit: contain; }
+  .cart-item > *:not(input):not(img) { grid-column: 3; min-width: 0; }
+  .cart-item h3, .cart-item h4 { font-size: 16px; line-height: 1.25; margin: 0 0 4px; }
+  .cart-item p, .cart-item span, .cart-item div { font-size: 14px; white-space: nowrap; }
+  .cart-item button { font-size: 13px; padding: 6px 10px; white-space: nowrap; }
+}
+
+h2, .section-title {
+  display: inline-block;
+  color: #fff;
+  background: rgba(30, 20, 80, 0.75);
+  padding: 8px 20px;
+  border-radius: 999px;
+}
+h2, .section-title {
+  display: inline-block;
+  color: #fff;
+  background: rgba(30, 20, 80, 0.75);
+  padding: 8px 20px;
+  border-radius: 999px;
 }
