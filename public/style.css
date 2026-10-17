@@ -1,6 +1,6 @@
 /* =========================
    BUDGETPHONE.PH - LABERON SHOP
-   STYLE.CSS PART 1
+   STYLE.CSS
 ========================= */
 
 * {
@@ -9,10 +9,13 @@
     padding: 0;
 }
 
+img {
+    max-width: 100%;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-image:
-        url("images/background.jpg");
+    background-image: url("images/background.jpg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -32,8 +35,7 @@ body {
     justify-content: space-between;
     align-items: center;
     background: rgba(255, 255, 255, 0.92);
-    box-shadow:
-        0 3px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -43,6 +45,7 @@ body {
     font-size: 24px;
     font-weight: bold;
     color: #7c2cff;
+    line-height: 1.2;
 }
 
 .nav-links {
@@ -66,6 +69,13 @@ body {
     opacity: 0.85;
 }
 
+.nav-links button.active,
+.nav-links button:focus-visible {
+    background: #ff3da8;
+    outline: 2px solid #fff;
+    box-shadow: 0 0 0 3px rgba(124, 44, 255, .35);
+}
+
 
 /* =========================
    SECTIONS
@@ -78,20 +88,26 @@ body {
     margin: auto;
 }
 
-
 .section h1,
 .section h2 {
     text-align: center;
     margin-bottom: 20px;
     color: whitesmoke;
+}
 
-
+/* Pill-style headings */
+h2,
+.section-title {
+    display: inline-block;
+    color: #fff;
+    background: rgba(30, 20, 80, 0.75);
+    padding: 8px 20px;
+    border-radius: 999px;
 }
 
 
-
 /* =========================
-   FORMS
+   FORMS (LOGIN / REGISTER)
 ========================= */
 
 .form-box {
@@ -101,15 +117,22 @@ body {
     padding: 30px;
     background: rgba(255, 255, 255, 0.94);
     border-radius: 20px;
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
 }
 
 .form-box h2 {
-    color: #7c2cff;
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto 20px;
+    padding: 10px 24px;
+    text-align: center;
+    white-space: nowrap;
+    color: #fff;
 }
 
 .form-box input {
+    display: block;
     width: 100%;
     padding: 13px;
     margin: 8px 0;
@@ -140,29 +163,24 @@ body {
     font-weight: bold;
     text-decoration: none;
 }
+
+
 /* =========================
    PRODUCTS
 ========================= */
 
 .products-container {
     display: grid;
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(165px, 1fr)
-        );
+    grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
     gap: 14px;
 }
 
 .product-card {
-    background:
-        rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 16px;
     padding: 11px;
     text-align: center;
-    box-shadow:
-        0 6px 18px
-        rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
     transition: 0.2s;
 }
 
@@ -216,8 +234,7 @@ body {
     max-width: 900px;
     margin: auto;
     padding: 25px;
-    background:
-        rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
 }
 
@@ -263,14 +280,13 @@ body {
 .cart-item {
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 15px;
-    background:
-        rgba(255, 255, 255, 0.95);
+    gap: 12px;
+    padding: 12px;
+    max-width: 100%;
+    min-height: 112px;
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 18px;
-    box-shadow:
-        0 5px 15px
-        rgba(0, 0, 0, 0.12);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
 }
 
 .cart-item > input {
@@ -280,14 +296,17 @@ body {
 }
 
 .cart-item img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    flex: 0 0 auto;
     border-radius: 12px;
 }
 
 .cart-info {
-    flex: 1;
+    flex: 1 1 150px;
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .cart-info h3 {
@@ -348,6 +367,8 @@ body {
     font-weight: bold;
     cursor: pointer;
 }
+
+
 /* =========================
    ORDERS
 ========================= */
@@ -359,13 +380,10 @@ body {
 }
 
 .order-card {
-    background:
-        rgba(255, 255, 255, 0.96);
+    background: rgba(255, 255, 255, 0.96);
     padding: 20px;
     border-radius: 20px;
-    box-shadow:
-        0 6px 18px
-        rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
 
 .order-card h3 {
@@ -375,6 +393,7 @@ body {
 
 .order-card p {
     margin: 6px 0;
+    color: #333333;
 }
 
 .order-item {
@@ -394,6 +413,88 @@ body {
 
 
 /* =========================
+   RECEIPT
+========================= */
+
+.receipt-container {
+    width: 100%;
+}
+
+.receipt-paper {
+    background: #fff;
+    color: #222;
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto 18px;
+    padding: clamp(16px, 4vw, 32px);
+    border-radius: 12px;
+    box-shadow: 0 5px 22px rgba(0, 0, 0, .18);
+    overflow-wrap: anywhere;
+}
+
+.receipt-brand {
+    color: #7c2cff;
+    font-weight: 800;
+    font-size: clamp(20px, 4vw, 28px);
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.receipt-paper h3 {
+    text-align: center;
+    margin: 10px 0 16px;
+}
+
+.receipt-paper p {
+    margin: 8px 0;
+    color: #333333;
+}
+
+.receipt-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 18px;
+    font-size: 14px;
+}
+
+.receipt-table th,
+.receipt-table td {
+    border-bottom: 1px solid #ddd;
+    padding: 8px 5px;
+    text-align: left;
+    overflow-wrap: anywhere;
+}
+
+.receipt-total {
+    text-align: right !important;
+    margin-top: 18px !important;
+}
+
+.receipt-thanks {
+    text-align: center;
+    margin-top: 24px !important;
+}
+
+.print-receipt-btn {
+    display: block;
+    margin: 12px auto;
+    padding: 12px 20px;
+    border: 0;
+    border-radius: 10px;
+    color: white;
+    background: #7c2cff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#cartContainer > p,
+#ordersContainer > p,
+#receiptContainer > p {
+    color: #333333;
+}
+
+
+/* =========================
    PAYMENT MODAL
 ========================= */
 
@@ -402,8 +503,7 @@ body {
     position: fixed;
     inset: 0;
     z-index: 2000;
-    background:
-        rgba(0, 0, 0, 0.55);
+    background: rgba(0, 0, 0, 0.55);
     justify-content: center;
     align-items: center;
     padding: 20px;
@@ -452,7 +552,7 @@ body {
 
 
 /* =========================
-   MOBILE
+   MOBILE (700px)
 ========================= */
 
 @media (max-width: 700px) {
@@ -460,6 +560,7 @@ body {
     .navbar {
         flex-direction: column;
         gap: 12px;
+        padding: 12px;
     }
 
     .logo {
@@ -467,12 +568,22 @@ body {
     }
 
     .nav-links {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
         width: 100%;
     }
 
     .nav-links button {
+        min-width: 0;
+        width: 100%;
+        padding: 9px 5px;
         font-size: 12px;
-        padding: 8px 10px;
+        overflow-wrap: anywhere;
+    }
+
+    .section {
+        padding: 22px 12px;
     }
 
     .product-details {
@@ -486,32 +597,20 @@ body {
         height: 350px;
     }
 
-    .cart-item {
-        align-items: flex-start;
-        flex-wrap: wrap;
-    }
-
-    .cart-item img {
-        width: 80px;
-        height: 80px;
-    }
-
-    .cart-info {
-        min-width: 200px;
-    }
-
     .products-container {
-        grid-template-columns:
-            repeat(2, 1fr);
-        gap: 12px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
     }
 
     .product-card {
-        padding: 10px;
+        min-width: 0;
+        padding: 9px;
+        border-radius: 12px;
     }
 
     .product-card img {
-        height: 180px;
+        height: clamp(105px, 30vw, 155px);
+        object-fit: contain;
     }
 
     .product-card h3 {
@@ -522,92 +621,127 @@ body {
         font-size: 17px;
     }
 
+    .cart-item {
+        display: grid;
+        grid-template-columns: 68px minmax(0, 1fr);
+        align-items: start;
+        gap: 8px;
+        margin-bottom: 10px;
+    }
+
+    .cart-item img {
+        width: 68px;
+        height: 68px;
+    }
+
+    .cart-info {
+        min-width: 0;
+    }
+
+    .receipt-table {
+        font-size: 11px;
+    }
+
+    .receipt-table th,
+    .receipt-table td {
+        padding: 6px 3px;
+    }
 }
 
 
-/* BUDGETPHONE.PH responsive navigation and compact cart */
-.nav-links button.active, .nav-links button:focus-visible {
-    background: #ff3da8;
-    outline: 2px solid #fff;
-    box-shadow: 0 0 0 3px rgba(124,44,255,.35);
-}
-.logo { color: #7c2cff; line-height: 1.2; }
-.cart-item { max-width: 100%; min-height: 112px; padding: 12px; gap: 12px; }
-.cart-info { min-width: 0; flex: 1 1 150px; overflow-wrap: anywhere; }
-.cart-item img { width: 90px; height: 90px; object-fit: contain; flex: 0 0 auto; }
-.receipt-container { width: 100%; }
-.receipt-paper { background: #fff; color: #222; width: 100%; max-width: 720px; margin: 0 auto 18px; padding: clamp(16px, 4vw, 32px); border-radius: 12px; box-shadow: 0 5px 22px rgba(0,0,0,.18); overflow-wrap: anywhere; }
-.receipt-brand { color: #7c2cff; font-weight: 800; font-size: clamp(20px, 4vw, 28px); text-align: center; margin-bottom: 8px; }
-.receipt-paper h3 { text-align: center; margin: 10px 0 16px; }
-.receipt-paper p { margin: 8px 0; }
-.receipt-table { width: 100%; border-collapse: collapse; margin-top: 18px; font-size: 14px; }
-.receipt-table th, .receipt-table td { border-bottom: 1px solid #ddd; padding: 8px 5px; text-align: left; overflow-wrap: anywhere; }
-.receipt-total { text-align: right !important; margin-top: 18px !important; }
-.receipt-thanks { text-align: center; margin-top: 24px !important; }
-.print-receipt-btn { display: block; margin: 12px auto; padding: 12px 20px; border: 0; border-radius: 10px; color: white; background: #7c2cff; font-weight: bold; cursor: pointer; }
-@media (max-width: 700px) {
-    .navbar { padding: 12px; }
-    .nav-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
-    .nav-links button { min-width: 0; width: 100%; padding: 9px 5px; font-size: 12px; overflow-wrap: anywhere; }
-    .section { padding: 22px 12px; }
-    .products-container { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-    .product-card { min-width: 0; padding: 9px; border-radius: 12px; }
-    .product-card img { height: clamp(105px, 30vw, 155px); object-fit: contain; }
-    .cart-item { display: grid; grid-template-columns: 68px minmax(0,1fr); align-items: start; gap: 8px; margin-bottom: 10px; }
-    .cart-item img { width: 68px; height: 68px; }
-    .cart-info { min-width: 0; }
-    .receipt-table { font-size: 11px; }
-    .receipt-table th, .receipt-table td { padding: 6px 3px; }
-}
-@media print {
-    body { background: white !important; }
-    body * { visibility: hidden !important; }
-    #printReceipt, #printReceipt * { visibility: visible !important; }
-    #printReceipt { position: absolute; inset: 0; width: 100%; max-width: none; box-shadow: none; margin: 0; }
-    .print-receipt-btn { display: none !important; }
-}
-
-#cartContainer > p,
-#ordersContainer > p,
-#receiptContainer > p {
-    color: #333333;
-}
-
-.order-card p,
-.receipt-paper p {
-    color: #333333;
-}
-* { box-sizing: border-box; }
-img { max-width: 100%; }
-
+/* =========================
+   MOBILE (480px)
+========================= */
 
 @media (max-width: 480px) {
-  .cart-item {
-    display: grid;
-    grid-template-columns: 24px 70px 1fr;
-    column-gap: 10px;
-    align-items: start;
-    padding: 12px;
-  }
-  .cart-item input[type="checkbox"] { grid-column: 1; margin-top: 4px; }
-  .cart-item img { grid-column: 2; width: 70px; height: 70px; object-fit: contain; }
-  .cart-item > *:not(input):not(img) { grid-column: 3; min-width: 0; }
-  .cart-item h3, .cart-item h4 { font-size: 16px; line-height: 1.25; margin: 0 0 4px; }
-  .cart-item p, .cart-item span, .cart-item div { font-size: 14px; white-space: nowrap; }
-  .cart-item button { font-size: 13px; padding: 6px 10px; white-space: nowrap; }
+
+    .cart-item {
+        display: grid;
+        grid-template-columns: 24px 70px 1fr;
+        column-gap: 10px;
+        align-items: start;
+        padding: 12px;
+    }
+
+    .cart-item input[type="checkbox"] {
+        grid-column: 1;
+        margin-top: 4px;
+    }
+
+    .cart-item img {
+        grid-column: 2;
+        width: 70px;
+        height: 70px;
+        object-fit: contain;
+    }
+
+    .cart-item > *:not(input):not(img) {
+        grid-column: 3;
+        min-width: 0;
+    }
+
+    .cart-item h3,
+    .cart-item h4 {
+        font-size: 16px;
+        line-height: 1.25;
+        margin: 0 0 4px;
+    }
+
+    .cart-item p,
+    .cart-item span,
+    .cart-item div {
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    .cart-item button {
+        font-size: 13px;
+        padding: 6px 10px;
+        white-space: nowrap;
+    }
 }
 
-h2, .section-title {
-  display: inline-block;
-  color: #fff;
-  background: rgba(30, 20, 80, 0.75);
-  padding: 8px 20px;
-  border-radius: 999px;
+
+/* =========================
+   MOBILE (400px) - LOGIN TITLE
+========================= */
+
+@media (max-width: 400px) {
+    .form-box h2 {
+        font-size: 1.2rem;
+        padding: 8px 18px;
+    }
 }
-h2, .section-title {
-  display: inline-block;
-  color: #fff;
-  background: rgba(30, 20, 80, 0.75);
-  padding: 8px 20px;
-  border-radius: 999px;
+
+
+/* =========================
+   PRINT
+========================= */
+
+@media print {
+    body {
+        background: white !important;
+    }
+
+    body * {
+        visibility: hidden !important;
+    }
+
+    #printReceipt,
+    #printReceipt * {
+        visibility: visible !important;
+    }
+
+    #printReceipt {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        max-width: none;
+        box-shadow: none;
+        margin: 0;
+    }
+
+    .print-receipt-btn {
+        display: none !important;
+    }
 }
