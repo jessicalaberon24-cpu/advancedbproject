@@ -1687,3 +1687,46 @@ document.addEventListener(
     }
 );
 
+// =========================
+// GLITTER EFFECT
+// =========================
+
+function createGlitter() {
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        return;
+    }
+
+    const layer = document.createElement("div");
+    layer.className = "glitter-layer";
+    layer.setAttribute("aria-hidden", "true");
+
+    const colors = ["#ffffff", "#b47cff", "#ff4fa3", "#7fdcff", "#ffe066"];
+    const shapes = ["✦", "✧", "✦", "✨"];
+    const count = window.innerWidth < 700 ? 25 : 50;
+
+    for (let i = 0; i < count; i++) {
+
+        const star = document.createElement("div");
+        star.className = "glitter";
+
+        star.textContent =
+            shapes[Math.floor(Math.random() * shapes.length)];
+
+        star.style.left = Math.random() * 100 + "%";
+        star.style.top = Math.random() * 100 + "%";
+        star.style.fontSize = 12 + Math.random() * 18 + "px";
+        star.style.animationDuration = 1.5 + Math.random() * 2.5 + "s";
+        star.style.animationDelay = Math.random() * 4 + "s";
+        star.style.setProperty(
+            "--c",
+            colors[Math.floor(Math.random() * colors.length)]
+        );
+
+        layer.appendChild(star);
+    }
+
+    document.body.appendChild(layer);
+}
+
+createGlitter();
