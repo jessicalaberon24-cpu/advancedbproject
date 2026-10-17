@@ -745,3 +745,62 @@ h2,
         display: none !important;
     }
 }
+
+/* =========================
+   DANCING ANIME SA LOGIN
+========================= */
+
+.login-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.form-box .login-title-row h2 {
+    margin: 0;
+}
+
+.dancer {
+    width: 85px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+
+/* =========================
+   GLITTER EFFECT
+========================= */
+
+.glitter-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 500;
+}
+
+.glitter {
+    position: absolute;
+    color: var(--c);
+    line-height: 1;
+    opacity: 0;
+    text-shadow:
+        0 0 4px var(--c),
+        0 0 10px var(--c),
+        0 0 18px var(--c);
+    animation: twinkle ease-in-out infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0.2) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2) rotate(45deg);
+    }
+}
