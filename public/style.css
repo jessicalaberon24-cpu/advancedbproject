@@ -804,3 +804,36 @@ h2,
         transform: scale(1.2) rotate(45deg);
     }
 }
+
+.greeting {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #d6338a;
+  white-space: nowrap;
+  margin: 0 12px;
+  text-align: left;
+}
+
+@media (max-width: 700px) {
+  .greeting {
+    font-size: 1rem;
+    margin: 4px 0;
+    text-align: center;
+  }
+}
+
+/* ===== GREETING ANIMATION ===== */
+#greeting .wave-name span {
+  display: inline-block;
+  transform-origin: bottom center;
+  animation: nameDance 1s ease-in-out infinite;
+}
+
+@keyframes nameDance {
+  0%   { transform: translateY(0) rotate(0) scale(1); color: #d6338a; }
+  20%  { transform: translateY(-12px) rotate(-14deg) scale(1.2); color: #ff9800; }
+  40%  { transform: translateY(0) rotate(0) scale(1); color: #3fa4d6; }
+  60%  { transform: translateY(-12px) rotate(14deg) scale(1.2); color: #7cb342; }
+  80%  { transform: translateY(0) rotate(0) scale(1); color: #9c27b0; }
+  100% { transform: translateY(0) rotate(0) scale(1); color: #d6338a; }
+}
