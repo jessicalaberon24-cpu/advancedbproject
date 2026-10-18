@@ -16,10 +16,39 @@ const BASE_URL = (
 ).replace(/\/$/, "");
 
 
-
-
 app.use(cors());
 app.use(express.json());
+
+// DEMO: kapag bumalik galing Maya, Paid + To Ship na ang order.
+// Dapat NAUUNA ito sa express.static.
+app.get("/success.html", (req, res) => {
+    const orderNumber = req.query.orderNumber;
+
+    const sendPage = () =>
+        res.sendFile(
+            path.join(__dirname, "public", "success.html")
+        );
+
+    if (!orderNumber) {
+        return sendPage();
+    }
+
+    db.query(
+        `UPDATE orders
+         SET payment_status = 'Paid',
+             order_status = 'To Ship'
+         WHERE order_number = ?
+           AND payment_method = 'PayMaya'`,
+        [orderNumber],
+        (err) => {
+            if (err) {
+                console.error("Success page update error:", err);
+            }
+
+            sendPage();
+        }
+    );
+});
 
 app.use(
     express.static(
@@ -27,11 +56,7 @@ app.use(
     )
 );
 
-app.get("/success.html", (req, res) => {
-    res.sendFile(
-        path.join(__dirname, "public", "success.html")
-    );
-});
+
 
 // =========================
 // MYSQL DATABASE
@@ -43,6 +68,7 @@ const db = mysql.createPool({
     user: process.env.DB_USER || "root",
     password: process.env.DB_PASSWORD || "",
     database: process.env.DB_NAME || "budgetphone",
+    timezone: "Z",                      // <-- IDAGDAG ITO
     ssl: process.env.DB_HOST
         ? { rejectUnauthorized: true }
         : undefined
