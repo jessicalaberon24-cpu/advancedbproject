@@ -381,54 +381,54 @@
                     required
                 ></textarea>
 
-                <button onclick="payWithCOD()">
+               
+       <button onclick="payWithCOD()">
                     Confirm COD Order
                 </button>
 
             </div>
 
+            <!-- PAYMAYA DELIVERY FORM -->
+            <div id="mayaDeliveryForm" style="display: none;">
+
+                <h3>Delivery Information</h3>
+
+                <label for="mayaFullName">Full Name</label>
+                <input
+                    type="text"
+                    id="mayaFullName"
+                    placeholder="Enter recipient's full name"
+                    autocomplete="name"
+                    required
+                >
+
+                <label for="mayaPhone">Cellphone Number</label>
+                <input
+                    type="tel"
+                    id="mayaPhone"
+                    placeholder="Enter cellphone number"
+                    autocomplete="tel"
+                    required
+                >
+
+                <label for="mayaAddress">Complete Delivery Address</label>
+                <textarea
+                    id="mayaAddress"
+                    placeholder="House/Unit No., Street, Barangay, City/Municipality, Province"
+                    autocomplete="street-address"
+                    rows="4"
+                    required
+                ></textarea>
+
+                <button type="button" onclick="continueToMayaPayment()">
+                    Continue to PayMaya
+                </button>
+
+            </div>
+
         </div>
-        <!-- PAYMAYA DELIVERY FORM -->
-<div id="mayaDeliveryForm" style="display: none;">
-
-    <h3>Delivery Information</h3>
-
-    <label for="mayaFullName">Full Name</label>
-    <input
-        type="text"
-        id="mayaFullName"
-        placeholder="Enter recipient's full name"
-        autocomplete="name"
-        required
-    >
-
-    <label for="mayaPhone">Cellphone Number</label>
-    <input
-        type="tel"
-        id="mayaPhone"
-        placeholder="Enter cellphone number"
-        autocomplete="tel"
-        required
-    >
-
-    <label for="mayaAddress">Complete Delivery Address</label>
-    <textarea
-        id="mayaAddress"
-        placeholder="House/Unit No., Street, Barangay, City/Municipality, Province"
-        autocomplete="street-address"
-        rows="4"
-        required
-    ></textarea>
-
-    <button type="button" onclick="continueToMayaPayment()">
-        Continue to PayMaya
-    </button>
-
-</div>
 
     </div>
-
-
     <!-- =========================
          JAVASCRIPT
     ========================== -->
