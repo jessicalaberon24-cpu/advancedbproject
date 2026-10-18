@@ -520,6 +520,9 @@ h2,
 }
 
 .modal-content h2 {
+    display: block;
+    background: none;
+    padding: 0;
     color: #7c2cff;
     margin-bottom: 20px;
 }
@@ -836,4 +839,64 @@ h2,
   60%  { transform: translateY(-12px) rotate(14deg) scale(1.2); color: #7cb342; }
   80%  { transform: translateY(0) rotate(0) scale(1); color: #9c27b0; }
   100% { transform: translateY(0) rotate(0) scale(1); color: #d6338a; }
+}
+
+/* ===== PAYMENT MODAL FORM ===== */
+
+.modal-content {
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-content h3 {
+    color: #7c2cff;
+    margin: 20px 0 6px;
+}
+
+.modal-content label {
+    display: block;
+    text-align: left;
+    margin: 14px 0 6px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.modal-content input,
+.modal-content textarea {
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #fff;
+    color: #222;
+    font-size: 16px;
+    font-family: inherit;
+    outline: none;
+}
+
+.modal-content textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus {
+    border-color: #7c2cff;
+    box-shadow: 0 0 0 3px rgba(124, 44, 255, 0.2);
+}
+
+#codForm button,
+#mayaDeliveryForm button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 18px;
+    border: none;
+    border-radius: 12px;
+    background: #7c2cff;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
 }
