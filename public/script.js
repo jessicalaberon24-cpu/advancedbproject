@@ -8,31 +8,29 @@
 // LOCAL STORAGE
 // =========================
 
-let cart =
-    JSON.parse(
-        localStorage.getItem(
-            "bp_cart"
-        )
-    ) || [];
-
-
 let currentUser =
-    JSON.parse(
-        localStorage.getItem(
-            "bp_user"
-        )
-    ) || null;
+    JSON.parse(localStorage.getItem("bp_user")) || null;
 
+function cartKey() {
+    return currentUser
+        ? "bp_cart_" + currentUser.id
+        : "bp_cart_guest";
+}
+
+function saveCart() {
+    localStorage.setItem(cartKey(), JSON.stringify(cart));
+}
+
+localStorage.removeItem("bp_cart");
+
+let cart =
+    JSON.parse(localStorage.getItem(cartKey())) || [];
 
 let products = [];
 
-
 let pendingOrder =
-    JSON.parse(
-        localStorage.getItem(
-            "bp_pendingOrder"
-        )
-    ) || null;
+    JSON.parse(localStorage.getItem("bp_pendingOrder")) || null;
+
 
 
 // =========================
@@ -101,12 +99,12 @@ function showSection(sectionId) {
 
 }
 
-
-// =========================
-// ACCOUNT UI
-// =========================
-
 function updateAccountUI() {
+
+    cart = JSON.parse(localStorage.getItem(cartKey())) || [];
+    updateCartCount();
+    renderCart();
+    showGreeting();
 
     const isLoggedIn = Boolean(currentUser);
 
@@ -119,7 +117,6 @@ function updateAccountUI() {
     const logoutBtn =
         document.getElementById("logoutBtn");
 
-    // Login at Sign Up
     if (loginBtn) {
         loginBtn.style.display =
             isLoggedIn ? "none" : "inline-block";
@@ -130,7 +127,6 @@ function updateAccountUI() {
             isLoggedIn ? "none" : "inline-block";
     }
 
-    // Products, Checkout, My Orders, at Receipt
     document.querySelectorAll(
         '.nav-links button[data-auth="required"]'
     ).forEach(button => {
@@ -138,7 +134,6 @@ function updateAccountUI() {
             isLoggedIn ? "inline-block" : "none";
     });
 
-    // Logout
     if (logoutBtn) {
         logoutBtn.style.display =
             isLoggedIn ? "inline-block" : "none";
@@ -396,11 +391,9 @@ function addToCart(productId) {
                 Number(productId)
         );
 
-
     if (!product) {
         return;
     }
-
 
     const existing =
         cart.find(
@@ -409,60 +402,33 @@ function addToCart(productId) {
                 Number(productId)
         );
 
-
     if (existing) {
 
         existing.quantity =
-            Number(
-                existing.quantity
-            ) + 1;
+            Number(existing.quantity) + 1;
 
     } else {
 
         cart.push({
-
-            id:
-                product.id,
-
-            name:
-                product.name,
-
-            price:
-                Number(
-                    product.price
-                ),
-
-            image:
-                product.image,
-
-            quantity:
-                1,
-
-            selected:
-                true
-
+            id: product.id,
+            name: product.name,
+            price: Number(product.price),
+            image: product.image,
+            quantity: 1,
+            selected: true
         });
 
     }
 
-
-    localStorage.setItem(
-        "bp_cart",
-        JSON.stringify(cart)
-    );
-
+    saveCart();
 
     updateCartCount();
 
     renderCart();
 
-    alert(
-        product.name +
-        " added to cart!"
-    );
+    alert(product.name + " added to cart!");
 
 }
-
 // =========================
 // RENDER CART
 // =========================
@@ -623,73 +589,44 @@ function renderCart() {
 // TOGGLE CART ITEM
 // =========================
 
-function toggleCartItem(
-    index,
-    checked
-) {
+function toggleCartItem(index, checked) {
 
     if (!cart[index]) {
         return;
     }
 
+    cart[index].selected = checked;
 
-    cart[index].selected =
-        checked;
-
-
-    localStorage.setItem(
-        "bp_cart",
-        JSON.stringify(cart)
-    );
-
+    saveCart();
 
     renderCart();
 
 }
 
-
 // =========================
 // CHANGE QUANTITY
 // =========================
 
-function changeQuantity(
-    index,
-    amount
-) {
+function changeQuantity(index, amount) {
 
     if (!cart[index]) {
         return;
     }
 
-
     cart[index].quantity =
-        Number(
-            cart[index].quantity
-        ) + amount;
+        Number(cart[index].quantity) + amount;
 
-
-    if (
-        cart[index].quantity < 1
-    ) {
-
+    if (cart[index].quantity < 1) {
         cart[index].quantity = 1;
-
     }
 
-
-    localStorage.setItem(
-        "bp_cart",
-        JSON.stringify(cart)
-    );
-
+    saveCart();
 
     updateCartCount();
 
     renderCart();
 
 }
-
-
 // =========================
 // REMOVE CART ITEM
 // =========================
@@ -700,26 +637,15 @@ function removeCartItem(index) {
         return;
     }
 
+    cart.splice(index, 1);
 
-    cart.splice(
-        index,
-        1
-    );
-
-
-    localStorage.setItem(
-        "bp_cart",
-        JSON.stringify(cart)
-    );
-
+    saveCart();
 
     updateCartCount();
 
     renderCart();
 
 }
-
-
 // =========================
 // GET SELECTED ITEMS
 // =========================
@@ -963,24 +889,62 @@ async function login() {
 function logout() {
 
     currentUser = null;
+    cart = [];
+    pendingOrder = null;
 
-
-    localStorage.removeItem(
-        "bp_user"
-    );
-
+    localStorage.removeItem("bp_user");
+    localStorage.removeItem("bp_pendingOrder");
 
     updateAccountUI();
 
     showSection("login");
 
-    alert(
-        "You have been logged out."
-    );
+    alert("You have been logged out.");
 
 }
+// =========================
+// GREETING
+// =========================
 
+function showGreeting() {
 
+    let box = document.getElementById("greeting");
+
+    if (!box) {
+        box = document.createElement("div");
+        box.id = "greeting";
+        box.className = "greeting";
+        box.innerHTML =
+            'Hi, <span id="userName" class="wave-name"></span> 👋';
+
+        const navLinks = document.querySelector(".nav-links");
+
+        if (navLinks && navLinks.parentNode) {
+            navLinks.parentNode.insertBefore(box, navLinks);
+        } else {
+            const firstSection = document.querySelector(".section");
+            if (!firstSection) return;
+            firstSection.parentNode.insertBefore(box, firstSection);
+        }
+    }
+
+    if (!currentUser) {
+        box.style.display = "none";
+        return;
+    }
+
+    const nameEl = document.getElementById("userName");
+    nameEl.innerHTML = "";
+
+    [...currentUser.name].forEach((ch, i) => {
+        const s = document.createElement("span");
+        s.textContent = ch === " " ? "\u00A0" : ch;
+        s.style.animationDelay = (i * 0.1) + "s";
+        nameEl.appendChild(s);
+    });
+
+    box.style.display = "block";
+}
 // =========================
  // PAYMENT MODAL
  // =========================
@@ -1238,12 +1202,7 @@ function removeSelectedItems() {
                 item.selected !== true
         );
 
-
-    localStorage.setItem(
-        "bp_cart",
-        JSON.stringify(cart)
-    );
-
+    saveCart();
 
     updateCartCount();
 
